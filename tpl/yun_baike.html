@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Mobile Framework - Documentation</title>
+    <link rel="stylesheet" href="../../js/lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.css" />
+    <script src = "../../js/lib/jquery-1.7.2.min.js"></script>
+    <script>
+//        jQuery.noConflict();
+        var j = jQuery;
+        j(document).bind("mobileinit", function(){
+            j.mobile.ajaxEnabled = false;
+            j.mobile.defaultPageTransition = 'none';
+        });
+    </script>
+    <link rel="stylesheet" href="../common/style.css" />
+    <script src="../../js/mgap.js"></script>
+    <script src = "../../js/lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js" ></script>
+    <style>
+        .ui-footer{background-image:url('../common/treasure_footer.png');}
+    </style>
+</head> 
+<body>
+<div data-role="page" id="zhunbei">
+    <div data-role="header" data-theme="z" data-position="fixed" >
+        <a data-role="button" data-icon="back" onclick="goBackTo('index.html');">返回</a>
+        <h1>好孕百科</h1>
+        <a href="../home/home.html"  data-icon="home" class="ui-btn-right">首页</a>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#zhunbei"class="ui-btn-active ui-state-persist">准备怀孕</a></li>
+                <li><a href="#huaiyun">怀孕期</a></li>
+                <li><a href="#fenmian">分娩期</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <ul data-role="listview" data-theme="d">
+            [%  FOREACH cate IN zhunbei %]
+            <li><a href="yuer_list.html?sid=0&cid=[%cate.cid%]">[% cate.title %]</a>
+            [%  END %]
+        </ul>
+    </div>
+</div>
+
+
+<div data-role="page" id="huaiyun">
+    <div data-role="header" data-theme="z" data-position="fixed" >
+        <a data-role="button" data-icon="back" onclick="goBackTo('index.html');">返回</a>
+        <h1>好孕百科</h1>
+        <a href="../home/home.html" data-icon="home" class="ui-btn-right">首页</a>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#zhunbei">准备怀孕</a></li>
+                <li><a href="#huaiyun" class="ui-btn-active ui-state-persist">怀孕期</a></li>
+                <li><a href="#fenmian">分娩期</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content" style="">
+        <ul data-role="listview" data-theme="d">
+            [%  FOREACH cate IN huaiyun %]
+            <li><a href="yuer_list.html?sid=0&cid=[%cate.cid%]">[% cate.title %]</a>
+            [%  END %]
+        </ul>
+    </div>
+</div>
+
+<div data-role="page" id="fenmian">
+    <div data-role="header" data-theme="z" data-position="fixed" >
+        <a data-role="button" data-icon="back" onclick="goBackTo('index.html');">返回</a>
+        <h1>好孕百科</h1>
+        <a href="../home/home.html"  data-icon="home" data-iconpos="" class="ui-btn-right">首页</a>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#zhunbei">准备怀孕</a></li>
+                <li><a href="#huaiyun">怀孕期</a></li>
+                <li><a href="#fenmian" class="ui-btn-active ui-state-persist">分娩期</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <ul data-role="listview" data-theme="d">
+            [%  FOREACH cate IN fenmian %]
+            <li><a href="yuer_list.html?sid=0&cid=[%cate.cid%]">[% cate.title %]</a>
+            [%  END %]
+        </ul>
+    </div>
+
+</div>
+
+
+<script src = "../../js/common/namespace.js"></script>
+<script src = "../../js/common/store.js"></script>
+<script src = "../../js/DB/db-scheme.js"></script>
+<script src = "../../js/kcollection/config.js" ></script>
+<script src = "../../js/kcollection/baike.js" ></script>
+<script>
+var db_baike = new js.db.Baike();
+db_baike.scheme_init();
+j(function(){
+
+});
+j(document).bind("pagechange", function(){
+    if (location.hash == '#zhunbei'){
+        j("#zhunbei ul:jqmData(role='listview')").listview('refresh');
+    }else if(location.hash == '#huaiyun'){
+        j("#huaiyun ul:jqmData(role='listview')").listview('refresh');
+    }else if(location.hash == '#fenmian'){
+        j("#fenmian ul:jqmData(role='listview')").listview('refresh');
+    }
+});
+</script>
+
+</body>
+</html>

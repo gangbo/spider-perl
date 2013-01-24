@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery UI Mobile Framework - Documentation</title>
+        <link rel="stylesheet" href="../../js/lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.css" />
+        <script src = "../../js/lib/jquery-1.7.2.min.js"></script>
+        <script>
+            //      jQuery.noConflict();
+            var j = jQuery;
+            j(document).bind("mobileinit", function(){
+                j.mobile.ajaxEnabled = false;
+                j.mobile.defaultPageTransition = 'none';
+            });
+        </script>
+        <link rel="stylesheet" href="../common/style.css" />
+        <script src="../../js/mgap.js"></script>
+        <script src = "../../js/lib/jquery.mobile-1.1.0/jquery.mobile-1.1.0.min.js" ></script>
+        <style>
+            .ui-footer{background-image:url('../common/treasure_footer.png');}
+        </style>
+    </head> 
+    <body>
+        [% FOREACH cate IN categories %]
+        <div data-role="page" id="[%cate.name%]">
+            <div data-role="header" data-theme="z" data-position="fixed" >
+                <a data-role="button" data-icon="back" onclick="goBackTo('index.html');">返回</a>
+                <h1>亲子游戏</h1>
+                <a href="../home/home.html"  data-icon="home" class="ui-btn-right">首页</a>
+                <div data-role="navbar">
+                    <ul>
+                        [% FOREACH cate2 IN categories %]
+                        <li><a href="#[%cate2.name%]" [% IF (cate.cid == cate2.cid) %] class="ui-btn-active ui-state-persist"[% END %]> [%cate2.cate_title%]</a></li>
+                        [% END %]
+                    </ul>
+                </div>
+            </div>
+
+            <div data-role="content">
+                <ul data-role="listview" data-theme="d">
+                    [% FOREACH article IN articles_aref %]
+                    [% IF article.age_type==cate.cid %]
+                    <li><a href="baby_game_detail.html?id=[%article.id%]">[% article.title %]</a>
+                    [% END %]
+                    [% END %]
+                </ul>
+            </div>
+        </div>
+        [% END %]
+
+        <script src = "../../js/common/namespace.js"></script>
+        <script src = "../../js/common/store.js"></script>
+        <script src = "../../js/DB/db-scheme.js"></script>
+        <script src = "../../js/kcollection/config.js" ></script>
+        <script src = "../../js/kcollection/baike.js" ></script>
+
+    </body>
+</html>
